@@ -1,10 +1,10 @@
 import { removeModal } from "./utils/modals.js";
 import { postData } from "./utils/httpReq.js";
+import { setCookie } from "./utils/cookie.js";
 
 const inputBox = document.querySelectorAll("input");
 const loginButton = document.querySelector("button");
 const modalButton = document.getElementById("modal-button");
-
 
 // Send information to the server and get the token
 const submitHandler = async (event) => {
@@ -16,7 +16,10 @@ const submitHandler = async (event) => {
     username,
     password,
   });
-  console.log(response);
+
+  // Save token in cookie
+  setCookie(response.token);
+  location.assign("index.html");
 };
 
 loginButton.addEventListener("click", submitHandler);
