@@ -1,6 +1,7 @@
 import { removeModal } from "./utils/modals.js";
 import { postData } from "./utils/httpReq.js";
-import { getCookie, setCookie } from "./utils/cookie.js";
+import { setCookie } from "./utils/cookie.js";
+import authHandler from "./utils/authorization.js";
 
 const inputBox = document.querySelectorAll("input");
 const loginButton = document.querySelector("button");
@@ -22,15 +23,8 @@ const submitHandler = async (event) => {
   location.assign("index.html");
 };
 
-// Setting access levels to different pages
-const init = () => {
-  const cookie = getCookie();
 
-  if(cookie){
-    location.assign("index.html")
-  }
-};
 
 loginButton.addEventListener("click", submitHandler);
 modalButton.addEventListener("click", removeModal);
-document.addEventListener("DOMContentLoaded", init);
+document.addEventListener("DOMContentLoaded", authHandler);

@@ -1,16 +1,7 @@
-import { getCookie } from "./utils/cookie.js"
+import authHandler from "./utils/authorization.js";
 
+const init = () => {
+  authHandler();
+};
 
-const init=()=>{
-    const cookie=getCookie()
-
-    if(!cookie){
-        location.assign("index.html")
-    }
-}
-
-
-
-
-
-document.addEventListener("DOMContentLoaded",init)
+document.addEventListener("DOMContentLoaded", init);
