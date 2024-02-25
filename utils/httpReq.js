@@ -2,6 +2,7 @@ import { showModal } from "./modals.js";
 
 const BASE_URL = "https://fakestoreapi.com";
 
+// Sending information to the server and getting a token for user registration
 const postData = async (path, data) => {
   try {
     const response = await fetch(`${BASE_URL}/${path}`, {
@@ -16,4 +17,15 @@ const postData = async (path, data) => {
   }
 };
 
-export { postData };
+// Getting product information from api
+const getData = async (path) => {
+  try {
+    const response = await fetch(`${BASE_URL}/${path}`);
+    const json = await response.json();
+    return json;
+  } catch (error) {
+    showModal("An error occurred!");
+  }
+};
+
+export { postData, getData };

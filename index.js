@@ -1,4 +1,5 @@
 import { getCookie } from "./utils/cookie.js";
+import { getData } from "./utils/httpReq.js";
 
 const loginButton = document.getElementById("login");
 const dashboardButton = document.getElementById("dashboard");
@@ -6,7 +7,7 @@ const dashboardButton = document.getElementById("dashboard");
 
 
 // Show login and dashboard buttons based on user status
-const init = () => {
+const init = async() => {
   const cookie = getCookie();
 
   if (cookie) {
@@ -14,6 +15,13 @@ const init = () => {
   } else {
     dashboardButton.style.display = "none";
   }
+
+  
+  const allProducts=await getData("products")
+  
 };
+
+
+
 
 document.addEventListener("DOMContentLoaded", init);
