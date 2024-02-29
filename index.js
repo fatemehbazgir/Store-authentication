@@ -2,9 +2,13 @@ import { getCookie } from "./utils/cookie.js";
 import { getData } from "./utils/httpReq.js";
 import { shortenText } from "./utils/stringFunc.js";
 
+let allProducts = null;
+
 const loginButton = document.getElementById("login");
 const dashboardButton = document.getElementById("dashboard");
 const mainContent = document.getElementById("products");
+const searchButton = document.querySelector("button");
+const inputBox = document.querySelector("input");
 
 // Showing products on the site
 const showProduct = (products) => {
@@ -47,8 +51,21 @@ const init = async () => {
     dashboardButton.style.display = "none";
   }
 
-  const allProducts = await getData("products");
+  allProducts = await getData("products");
   showProduct(allProducts);
 };
 
+// Ability to search products
+const searchHandler = () => {
+  const query = inputBox.value.trim().toLowerCase();
+
+  if (!query) return showProduct(allProducts);
+  const filteredProducts = allProducts.filter((product) =>
+    product.title.toLowerCase().includes(query)
+  );
+
+  showProduct(filteredProducts);
+};
+
 document.addEventListener("DOMContentLoaded", init);
+searchButton.addEventListener("click", searchHandler);
