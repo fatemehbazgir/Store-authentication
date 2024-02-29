@@ -8,9 +8,27 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
     <link rel="stylesheet" href="./css/global.css" />
+    <link rel="stylesheet" href="./css/dashboard.css">
     <title>Dashboard</title>
   </head>
   <body>
+    <header>
+      <h3>Platinum Mall</h3>
+      <div>
+        <a href="index.html">
+          Home
+          <i class="fa-solid fa-house"></i>
+        </a>
+        <button>
+          Logout
+          <i class="fa-solid fa-right-from-bracket"></i>
+        </button>
+      </div>
+    </header>
+    <main>
+      <h1>Users List:</h1>
+      <div id="container"><span id="loader"></span></div>
+    </main>
     <script src="./dashboard.js" type="module"></script>
   </body>
 </html>
